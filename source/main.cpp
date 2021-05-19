@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     ApplicationController appController;
 
     // Create Mask Detection
-    MaskDetection maskDetection(appController.getMaskModelPath().toStdString());
+    MaskDetection maskDetection(appController.shape().toStdString());
 
     // Create Mask Detection Filter
     MaskDetectionFilter maskDetectionFilter(&maskDetection);

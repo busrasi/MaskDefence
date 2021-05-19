@@ -31,7 +31,7 @@ ApplicationController::~ApplicationController()
 {}
 
 
-const QString& ApplicationController::getMaskModelPath() const
+const QString& ApplicationController::shape() const
 {
     return m_maskModelPath;
 }
@@ -67,7 +67,8 @@ bool ApplicationController::initializeHomePath()
 {
     // Android: HomeLocation works, iOS: not writable
     // Android: AppDataLocation works out of the box, iOS you must create the DIR first !!
-    m_homePath = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).value(0);
+    m_homePath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    //m_homePath = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).value(0);
 
     qDebug() << "ApplicationController :: Home path: " << m_homePath;
     QDir homeDir(m_homePath);
@@ -107,19 +108,23 @@ bool ApplicationController::initializeMaskModelPath()
     }
 
     // liveness model data
-    QFile maskModelDataFile(":/eye_predictor.dat");
+    QFile maskModelDataFile(":/mask_detect_v2.svm");
     if (!maskModelDataFile.open(QIODevice::ReadOnly))
     {
         qDebug() << "ApplicationController :: Couldn't open file: " << maskModelDataFile.fileName();
         return false;
     }
 
-    m_maskModelPath = dlibDataPath + "/eye_predictor.dat";
+
+    m_maskModelPath = dlibDataPath + "mask_detect_v2.svm";
 
     if(!maskModelDataFile.copy(m_maskModelPath))
     {
         qDebug() << "ApplicationController :: Couldn't copy file to dir: " << m_maskModelPath;
         return false;
+    }
+    else {
+        qDebug() << "Managed to copy file to path" << m_maskModelPath;
     }
 
     return true;

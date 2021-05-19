@@ -70,7 +70,7 @@ QVideoFrame MaskDetectionFilterRunnable::run(QVideoFrame *input, const QVideoSur
     ensureC3(&m_mat);
 
     // Mask Detection
-    filter->getMaskDetection()->executeMaskDetection(m_mat);
+    filter->getMaskDetection()->executeObjDetector(m_mat);
 
     QImage img = mat8ToImage(m_mat);
     QVideoFrame frame(img);

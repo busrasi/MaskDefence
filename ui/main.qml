@@ -26,8 +26,9 @@ ApplicationWindow {
         anchors.fill: parent
         source: camera
         focus: visible
+        //orientation: 180
 
-        autoOrientation: true
+        //autoOrientation: true
         visible: true
         //fillMode: VideoOutput.PreserveAspectCrop;
         filters: [maskDetectionFilter]
@@ -45,5 +46,6 @@ ApplicationWindow {
             }
         }
     }
+
 
 }

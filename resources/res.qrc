@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>eye_predictor.dat</file>
+        <file>mask_detect_v2.svm</file>
     </qresource>
 </RCC>

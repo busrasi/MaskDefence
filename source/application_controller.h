@@ -21,7 +21,7 @@ class ApplicationController
          * @brief Get dlib data base folder path
          * @return path of data folder
          */
-        const QString& getMaskModelPath() const;
+        const QString& shape() const;
 
 
     private:
